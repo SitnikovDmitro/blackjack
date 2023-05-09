@@ -7,7 +7,7 @@ class Audio
 {
 private:
     QSoundEffect cardSound;
-    bool soundEnabled;
+    bool soundEnabled = true;
 public:
     Audio();
     static Audio& getInstance();

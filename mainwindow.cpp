@@ -57,6 +57,8 @@ void MainWindow::reset() {
         } else {
             ui->gameResultLabel->setText(QString("No one wins"));
         }
+
+
     } else {
         ui->hitButton->setVisible(true);
         ui->standButton->setVisible(true);
@@ -67,6 +69,8 @@ void MainWindow::reset() {
     ui->betLabel->setText(QString("Cash: ") + QString::number(GameModel::getInstance().getPlayerCash()) + "$, bet: " + QString::number(GameModel::getInstance().getPlayerBet()) + "$");
     ui->dealerScoreLabel->setText(QString("Dealer's score: ") + QString::number(GameModel::getInstance().getDealerScore()));
     ui->playerScoreLabel->setText(QString("Your score: ") + QString::number(GameModel::getInstance().getPlayerScore()));
+    ui->currentCashLabel->setText(QString("Current cash: %1$").arg(GameModel::getInstance().getPlayerCash()));
+    ui->betLineEdit->setValidator(new QIntValidator(1, GameModel::getInstance().getPlayerCash(), this));
 }
 
 
@@ -83,7 +87,6 @@ void MainWindow::on_standButton_clicked() {
     int winner = GameModel::getInstance().getWinner();
 
     if (GameModel::getInstance().isFinished()) {
-        ui->currentCashLabel->setText(QString("Current cash: %1$").arg(GameModel::getInstance().getPlayerCash()));
         QString str = QString("Cash: %1$, bet: %2$, result: %3").arg(cash).arg(bet).arg(winner == 1 ? "win" : winner == -1 ? "lose" : "draw");
         ui->historyListWidget->addItem(str);
     }
@@ -103,7 +106,6 @@ void MainWindow::on_hitButton_clicked() {
     int winner = GameModel::getInstance().getWinner();
 
     if (GameModel::getInstance().isFinished()) {
-        ui->currentCashLabel->setText(QString("Current cash: %1$").arg(GameModel::getInstance().getPlayerCash()));
         QString str = QString("Cash: %1$, bet: %2$, result: %3").arg(cash).arg(bet).arg(winner == 1 ? "win" : winner == -1 ? "lose" : "draw");
         ui->historyListWidget->addItem(str);
     }
@@ -114,6 +116,7 @@ void MainWindow::on_hitButton_clicked() {
 
 void MainWindow::on_playButton_clicked() {
     GameModel::getInstance().setPlayerCash(Constants::INITIAL_CASH);
+    reset();
     ui->historyListWidget->clear();
     ui->betLineEdit->clear();
     ui->stackedWidget->setCurrentWidget(ui->gamePage);
@@ -134,7 +137,7 @@ void MainWindow::on_exitButton_clicked() {
 void MainWindow::on_returnButton_clicked() {
      GameModel::getInstance().reset();
      ui->stackedWidget->setCurrentWidget(ui->gamePage);
-     ui->betLineEdit->setValidator(new QIntValidator(1, GameModel::getInstance().getPlayerCash(), this));
+
      ui->betLineEdit->setText("");
      ui->startButton->setStyleSheet(generateStartButtonStyleSheet(false));
      reset();
