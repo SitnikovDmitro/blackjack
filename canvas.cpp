@@ -1,5 +1,6 @@
 #include "canvas.h"
 #include "gamemodel.h"
+#include "constants.h"
 #include <QTimer>
 
 
@@ -7,8 +8,7 @@
 
 
 
-Canvas::Canvas(QWidget *parent) : QWidget(parent)
-{
+Canvas::Canvas(QWidget *parent) : QWidget(parent) {
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &Canvas::updatePosition);
     timer->start(20);
@@ -25,8 +25,7 @@ void Canvas::paintEvent(QPaintEvent *event) {
     render();
 }
 
-void Canvas::drawCardFront(Card card, int x, int y)
-{
+void Canvas::drawCardFront(Card card, int x, int y) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.setPen(Qt::black);
@@ -35,10 +34,9 @@ void Canvas::drawCardFront(Card card, int x, int y)
     QRect fragmentRect(card.getRank()*134, card.getSuit()*202, 134, 202);
     painter.drawImage(QPoint(x, y), cardsFrontTexture, fragmentRect);
 
-    int width = 134;
-    int height = 202;
-    int radius = 10;
-    painter.drawRoundedRect(x, y, width, height, radius, radius);
+    int width = Constants::CARD_WIDTH;
+    int height = Constants::CARD_HEIGHT;
+    painter.drawRoundedRect(x, y, width, height, 10, 10);
 }
 
 void Canvas::drawCardBack(int x, int y)
@@ -50,21 +48,19 @@ void Canvas::drawCardBack(int x, int y)
 
     painter.drawImage(QPoint(x, y), cardBackTexture);
 
-    int width = 134;
-    int height = 202;
-    int radius = 10;
-    painter.drawRoundedRect(x, y, width, height, radius, radius);
+    int width = Constants::CARD_WIDTH;
+    int height = Constants::CARD_HEIGHT;
+    painter.drawRoundedRect(x, y, width, height, 10, 10);
 }
 
-void Canvas::render()
-{
+void Canvas::render() {
     QVector<Card> playerCards = GameModel::getInstance().getPalyerCards();
     QVector<Card> dealerCards = GameModel::getInstance().getDealerCards();
 
-    const int cardWidth = 134;
-    const int cardHeight = 202;
-    const int shift = 20;
-    const int padding = 5;
+    const int cardWidth = Constants::CARD_WIDTH;
+    const int cardHeight = Constants::CARD_HEIGHT;
+    const int shift = Constants::CARD_SHIFT;
+    const int padding = Constants::CARD_PADDING;
     const int deckX = width()/2 - cardWidth/2;
     const int deckY = padding;
 
@@ -86,8 +82,6 @@ void Canvas::render()
         } else {
             drawCardFront(playerCards.at(i), endX, endY);
         }
-
-        //qDebug("Drawed player: x=%d, y=%d", x, y);
     }
 
     for (int i = 0; i < dealerCards.length(); i++) {
@@ -111,19 +105,16 @@ void Canvas::render()
 
 }
 
-void Canvas::onHit()
-{
+void Canvas::onHit() {
     timeElapsed = 100;
     action = true;
 }
 
-void Canvas::onStand()
-{
+void Canvas::onStand() {
     timeElapsed = 100;
     action = false;
 }
 
-void Canvas::setCardBackTexture(QImage texture)
-{
+void Canvas::setCardBackTexture(QImage texture) {
     cardBackTexture = texture;
 }

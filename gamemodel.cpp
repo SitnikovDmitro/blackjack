@@ -1,7 +1,6 @@
 #include "gamemodel.h"
 
-Card GameModel::getCardFromDeck()
-{
+Card GameModel::getCardFromDeck() {
     if (deck.isEmpty()) throw "Empty deck";
 
     Card result = deck.last();
@@ -10,8 +9,7 @@ Card GameModel::getCardFromDeck()
 }
 
 
-void GameModel::reset()
-{
+void GameModel::reset() {
     playerHand.clear();
     dealerHand.clear();
     deck.clear();
@@ -46,8 +44,7 @@ void GameModel::reset()
     winner = 0;
 }
 
-void GameModel::stand()
-{
+void GameModel::stand() {
     while(getDealerScore() < 17) {
         const Card card = getCardFromDeck();
         dealerHand.append(card);
@@ -71,8 +68,7 @@ void GameModel::stand()
     finished = true;
 }
 
-void GameModel::hit()
-{
+void GameModel::hit() {
     const Card card = getCardFromDeck();
     playerHand.append(card);
 
@@ -84,18 +80,15 @@ void GameModel::hit()
     }
 }
 
-bool GameModel::isFinished() const
-{
+bool GameModel::isFinished() const {
     return finished;
 }
 
-int GameModel::getWinner() const
-{
+int GameModel::getWinner() const {
     return winner;
 }
 
-int GameModel::getPlayerScore() const
-{
+int GameModel::getPlayerScore() const {
     int score = 0;
     for (Card card : playerHand) {
         score += card.getPoints(score);
@@ -103,8 +96,7 @@ int GameModel::getPlayerScore() const
     return score;
 }
 
-int GameModel::getDealerScore() const
-{
+int GameModel::getDealerScore() const {
     int score = 0;
     for (Card card : dealerHand) {
         score += card.getPoints(score);
@@ -112,29 +104,28 @@ int GameModel::getDealerScore() const
     return score;
 }
 
-int GameModel::getPlayerCash() const
-{
+int GameModel::getPlayerCash() const {
     return playerCash;
 }
 
-int GameModel::getPlayerBet() const
-{
+void GameModel::setPlayerCash(const int cash) {
+    playerCash = cash;
+}
+
+int GameModel::getPlayerBet() const {
     return playerBet;
 }
 
-void GameModel::setPlayerBet(const int bet)
-{
+void GameModel::setPlayerBet(const int bet) {
     if (bet <= 0) throw QString("Bet is negative or equals zero");
     playerBet = bet;
 }
 
-QVector<Card> GameModel::getPalyerCards() const
-{
+QVector<Card> GameModel::getPalyerCards() const {
     return playerHand;
 }
 
-QVector<Card> GameModel::getDealerCards() const
-{
+QVector<Card> GameModel::getDealerCards() const {
     return dealerHand;
 }
 

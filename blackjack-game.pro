@@ -13,6 +13,7 @@ SOURCES += \
     audio.cpp \
     canvas.cpp \
     card.cpp \
+    constants.cpp \
     gamemodel.cpp \
     main.cpp \
     mainwindow.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     audio.h \
     canvas.h \
     card.h \
+    constants.h \
     gamemodel.h \
     mainwindow.h
 

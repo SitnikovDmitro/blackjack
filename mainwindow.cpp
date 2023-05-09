@@ -4,20 +4,47 @@
 #include "audio.h"
 
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
-{
+
+QString generateStyleSheet(int textureIndex, bool isActive) {
+    QString str = QString()
+            .append("border: 5px solid;")
+            .append("border-radius: 15px;")
+            .append("max-width: 100px;")
+            .append("max-height: 100px;")
+            .append("min-width: 100px;")
+            .append("min-height: 100px;")
+            .append("background-image: url(:/images/card-back-%1.png);").arg(textureIndex)
+            .append(isActive ? "border-color: #008b00;\n" : "border-color: #8b0000;");
+
+    return str;
+}
+
+QString generateStartButtonStyleSheet(bool isEnabled) {
+    QString str = QString()
+            .append("border-radius: 15px;")
+            .append("border: 5px solid;")
+            .append("padding: 10px;")
+            .append("padding: 10px;")
+            .append(isEnabled ? "background-color: #35BBCA;" : "background-color: #5A5A5A;")
+            .append(isEnabled ? "border-color: #0191B4;" : "border-color: #2C2C2C;")
+            .append("color: #FFFFFF;")
+            .append("font: 24pt \"Berlin Sans FB\";");
+
+    return str;
+}
+
+
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
     ui->betLineEdit->setValidator(new QIntValidator(1, 100, this));
     reset();
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::reset()
-{
+void MainWindow::reset() {
     if (GameModel::getInstance().isFinished()) {
         ui->hitButton->setVisible(false);
         ui->standButton->setVisible(false);
@@ -39,12 +66,11 @@ void MainWindow::reset()
 
     ui->betLabel->setText(QString("Cash: ") + QString::number(GameModel::getInstance().getPlayerCash()) + "$, bet: " + QString::number(GameModel::getInstance().getPlayerBet()) + "$");
     ui->dealerScoreLabel->setText(QString("Dealer's score: ") + QString::number(GameModel::getInstance().getDealerScore()));
-    ui->playerScoreLabel->setText(QString("Youy score: ") + QString::number(GameModel::getInstance().getPlayerScore()));
+    ui->playerScoreLabel->setText(QString("Your score: ") + QString::number(GameModel::getInstance().getPlayerScore()));
 }
 
 
-void MainWindow::on_standButton_clicked()
-{
+void MainWindow::on_standButton_clicked() {
     int cash = GameModel::getInstance().getPlayerCash();
     int bet = GameModel::getInstance().getPlayerBet();
 
@@ -64,8 +90,7 @@ void MainWindow::on_standButton_clicked()
 }
 
 
-void MainWindow::on_hitButton_clicked()
-{
+void MainWindow::on_hitButton_clicked() {
     int cash = GameModel::getInstance().getPlayerCash();
     int bet = GameModel::getInstance().getPlayerBet();
 
@@ -87,35 +112,36 @@ void MainWindow::on_hitButton_clicked()
 
 
 
-void MainWindow::on_playButton_clicked()
-{
+void MainWindow::on_playButton_clicked() {
+    GameModel::getInstance().setPlayerCash(Constants::INITIAL_CASH);
+    ui->historyListWidget->clear();
+    ui->betLineEdit->clear();
     ui->stackedWidget->setCurrentWidget(ui->gamePage);
 }
 
 
-void MainWindow::on_optionsButton_clicked()
-{
+void MainWindow::on_optionsButton_clicked() {
     ui->stackedWidget->setCurrentWidget(ui->optionsPage);
 }
 
 
-void MainWindow::on_exitButton_clicked()
-{
+void MainWindow::on_exitButton_clicked() {
     QCoreApplication::quit();
 }
 
 
-void MainWindow::on_returnButton_clicked()
-{
+
+void MainWindow::on_returnButton_clicked() {
      GameModel::getInstance().reset();
      ui->stackedWidget->setCurrentWidget(ui->gamePage);
      ui->betLineEdit->setValidator(new QIntValidator(1, GameModel::getInstance().getPlayerCash(), this));
+     ui->betLineEdit->setText("");
+     ui->startButton->setStyleSheet(generateStartButtonStyleSheet(false));
      reset();
 }
 
 
-void MainWindow::on_startButton_clicked()
-{
+void MainWindow::on_startButton_clicked() {
     bool valid;
     const int bet = ui->betLineEdit->text().toInt(&valid);
     if (valid && bet >= 1 && bet <= GameModel::getInstance().getPlayerCash()) {
@@ -126,36 +152,20 @@ void MainWindow::on_startButton_clicked()
 }
 
 
-void MainWindow::on_returnGameButton_clicked()
-{
+void MainWindow::on_returnGameButton_clicked() {
+    ui->stackedWidget->setCurrentWidget(ui->mainPage);
+
+}
+
+
+void MainWindow::on_returnOptionsButton_clicked() {
     ui->stackedWidget->setCurrentWidget(ui->mainPage);
 }
 
 
-void MainWindow::on_returnOptionsButton_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->mainPage);
-}
-
-QString generateStyleSheet(int textureIndex, bool isActive) {
-    QString str = QString()
-            .append("border: 5px solid;")
-            .append("border-radius: 15px;")
-            .append("max-width: 100px;")
-            .append("max-height: 100px;")
-            .append("min-width: 100px;")
-            .append("min-height: 100px;")
-            .append("background-image: url(:/images/card-back-%1.png);").arg(textureIndex)
-            .append(isActive ? "border-color: #008b00;\n" : "border-color: #8b0000;");
-
-    qDebug() << str << "\n";
-
-    return str;
-}
 
 
-void MainWindow::on_cardBack1SelectButton_clicked()
-{
+void MainWindow::on_cardBack1SelectButton_clicked() {
     ui->cardBack1SelectButton->setStyleSheet(generateStyleSheet(1,true));
     ui->cardBack2SelectButton->setStyleSheet(generateStyleSheet(2,false));
     ui->cardBack3SelectButton->setStyleSheet(generateStyleSheet(3,false));
@@ -163,8 +173,7 @@ void MainWindow::on_cardBack1SelectButton_clicked()
 }
 
 
-void MainWindow::on_cardBack2SelectButton_clicked()
-{
+void MainWindow::on_cardBack2SelectButton_clicked() {
     ui->cardBack1SelectButton->setStyleSheet(generateStyleSheet(1,false));
     ui->cardBack2SelectButton->setStyleSheet(generateStyleSheet(2,true));
     ui->cardBack3SelectButton->setStyleSheet(generateStyleSheet(3,false));
@@ -172,8 +181,7 @@ void MainWindow::on_cardBack2SelectButton_clicked()
 }
 
 
-void MainWindow::on_cardBack3SelectButton_clicked()
-{
+void MainWindow::on_cardBack3SelectButton_clicked() {
     ui->cardBack1SelectButton->setStyleSheet(generateStyleSheet(1,false));
     ui->cardBack2SelectButton->setStyleSheet(generateStyleSheet(2,false));
     ui->cardBack3SelectButton->setStyleSheet(generateStyleSheet(3,true));
@@ -181,27 +189,10 @@ void MainWindow::on_cardBack3SelectButton_clicked()
 }
 
 
-QString generateStartButtonStyleSheet(bool isEnabled) {
 
 
-    QString str = QString()
-            .append("border-radius: 15px;")
-            .append("border: 5px solid;")
-            .append("padding: 10px;")
-            .append("padding: 10px;")
-            .append(isEnabled ? "background-color: #35BBCA;" : "background-color: #5A5A5A;")
-            .append(isEnabled ? "border-color: #0191B4;" : "border-color: #2C2C2C;")
-            .append("color: #FFFFFF;")
-            .append("font: 24pt \"Berlin Sans FB\";");
 
-    qDebug() << str << "\n";
-
-    return str;
-}
-
-
-void MainWindow::on_betLineEdit_textEdited(const QString &arg1)
-{
+void MainWindow::on_betLineEdit_textEdited(const QString &arg1) {
     bool valid;
     const int bet = ui->betLineEdit->text().toInt(&valid);
 
@@ -213,8 +204,7 @@ void MainWindow::on_betLineEdit_textEdited(const QString &arg1)
 }
 
 
-void MainWindow::on_soundButton_clicked()
-{
+void MainWindow::on_soundButton_clicked() {
     Audio::getInstance().setSoundEnabled(!Audio::getInstance().isSoundEnabled());
     ui->soundButton->setText(Audio::getInstance().isSoundEnabled() ? "Sound: ON" : "Sound: OFF");
 }

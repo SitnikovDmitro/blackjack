@@ -3,11 +3,9 @@
 
 #include <QWidget>
 #include <QPainter>
-//#include <QtMultimedia/QMediaPlayer>
 #include <card.h>
 
-class Canvas : public QWidget
-{
+class Canvas : public QWidget {
     Q_OBJECT
 public:
     explicit Canvas(QWidget *parent = nullptr);
@@ -30,9 +28,6 @@ protected:
     void drawCardFront(Card card, int x, int y);
     void drawCardBack(int x, int y);
     void render();
-
-signals:
-
 };
 
 #endif // CANVAS_H

@@ -2,8 +2,7 @@
 #define CARD_H
 
 
-class Card
-{
+class Card {
 private:
     const int rank, suit;
 public:

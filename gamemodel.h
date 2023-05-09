@@ -3,17 +3,17 @@
 
 #include <QVector>
 #include "card.h"
+#include "constants.h"
 
-class GameModel
-{
+class GameModel {
 private:
     QVector<Card> deck;
     QVector<Card> playerHand;
     QVector<Card> dealerHand;
     bool finished = true;
     int winner = 0;
-    int playerCash = 100;
-    int playerBet = 10;
+    int playerCash = Constants::INITIAL_CASH;
+    int playerBet = 0;
 
     Card getCardFromDeck();
 
@@ -30,6 +30,7 @@ public:
     int getPlayerScore() const;
     int getDealerScore() const;
     int getPlayerCash() const;
+    void setPlayerCash(const int cash);
     int getPlayerBet() const;
     void setPlayerBet(const int bet);
     QVector<Card> getPalyerCards() const;
