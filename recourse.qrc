@@ -1,0 +1,10 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <file>images/cards-front.png</file>
+        <file>images/card-back-1.png</file>
+        <file>images/card-back-2.png</file>
+        <file>images/card-back-3.png</file>
+        <file>sounds/sound.mp3</file>
+    </qresource>
+</RCC>

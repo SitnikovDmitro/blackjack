@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Backjack</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">background-color: #D3DD18</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="mainPage">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>7</number>
+        </property>
+        <item>
+         <spacer name="spacer2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <spacer name="spacer3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="nameLabel">
+            <property name="font">
+             <font>
+              <family>Berlin Sans FB</family>
+              <pointsize>36</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #FFFFFF;
+font: 36pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Blackjack 1.0.0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="playButton">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+            </property>
+            <property name="text">
+             <string>Play</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="optionsButton">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="exitButton">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Exit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="spacer4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="spacer1">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="optionsPage">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>205</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="optionsLabel">
+            <property name="styleSheet">
+             <string notr="true">color: #FFFFFF;
+font: 36pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Options</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="soundButton">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Sound: ON</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QPushButton" name="cardBack1SelectButton">
+              <property name="styleSheet">
+               <string notr="true">background-image: url(:/images/card-back-1.png);
+min-height: 100px;
+min-width: 100px;
+max-height: 100px;
+max-width: 100px;
+
+border-radius: 15px;
+border: 5px solid;
+border-color: #8b0000;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cardBack2SelectButton">
+              <property name="styleSheet">
+               <string notr="true">background-image: url(:/images/card-back-2.png);
+min-height: 100px;
+min-width: 100px;
+max-height: 100px;
+max-width: 100px;
+
+border-radius: 15px;
+border: 5px solid;
+border-color: #8b0000;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="cardBack3SelectButton">
+              <property name="styleSheet">
+               <string notr="true">background-image: url(:/images/card-back-3.png);
+min-height: 100px;
+min-width: 100px;
+max-height: 100px;
+max-width: 100px;
+
+border-radius: 15px;
+border: 5px solid;
+border-color: #008b00;</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QPushButton" name="returnOptionsButton">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Return</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>205</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="gamePage">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <property name="spacing">
+         <number>7</number>
+        </property>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>64</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="gameStatisticsLabel">
+            <property name="styleSheet">
+             <string notr="true">color: #FFFFFF;
+font: 36pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Game statistics</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <property name="spacing">
+             <number>20</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="currentCashLabel">
+              <property name="styleSheet">
+               <string notr="true">color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+              </property>
+              <property name="text">
+               <string>Current cash: 100$</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="cashAtStartLabel">
+              <property name="styleSheet">
+               <string notr="true">color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+              </property>
+              <property name="text">
+               <string>Cash at start: 100$</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QListWidget" name="historyListWidget">
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QLineEdit" name="betLineEdit">
+              <property name="styleSheet">
+               <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="placeholderText">
+               <string>Input bet here</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="returnGameButton">
+              <property name="styleSheet">
+               <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+              </property>
+              <property name="text">
+               <string>Return</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="startButton">
+              <property name="styleSheet">
+               <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #5A5A5A;
+border-color: #2C2C2C;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;
+</string>
+              </property>
+              <property name="text">
+               <string>Start</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>63</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="stepPage">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="gameResultLabel">
+          <property name="styleSheet">
+           <string notr="true">color: #FFFFFF;
+font: 36pt &quot;Berlin Sans FB&quot;;</string>
+          </property>
+          <property name="text">
+           <string>You win 180$</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Canvas" name="canvas" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QLabel" name="playerScoreLabel">
+            <property name="styleSheet">
+             <string notr="true">color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Your score: 12</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="dealerScoreLabel">
+            <property name="styleSheet">
+             <string notr="true">color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Dealer's score: 2</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="betLabel">
+            <property name="styleSheet">
+             <string notr="true">color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Bet: 90$, cash: 1000$</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="returnButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Return</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="hitButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Hit</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="standButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius: 15px;
+border: 5px solid;
+padding: 10px;
+background-color: #35BBCA;
+border-color: #0191B4;
+color: #FFFFFF;
+font: 24pt &quot;Berlin Sans FB&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Stand</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionRestart">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Canvas</class>
+   <extends>QWidget</extends>
+   <header>canvas.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
